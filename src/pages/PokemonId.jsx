@@ -49,15 +49,79 @@ const pokeText = {
   shadow: "text-[#2d2e2f]",
 };
 
+const bgColors = {
+  grass: "bg-[#85C9C5]",
+  fire: "bg-[#F96D6F]",
+  water: "bg-[#1479FB]",
+  bug: "bg-[#62DB60]",
+  normal: "bg-[#7C3F4C]",
+  poison: "bg-[#6C3D9A]",
+  electric: "bg-[#F8D030]",
+  ground: "bg-[#D69638]",
+  fairy: "bg-[#F4BDC9]",
+  fighting: "bg-[#D67873]",
+  flying: "bg-[#6D5E9C]",
+  rock: "bg-[#B8A038]",
+  psychic: "bg-[#A65E9A]",
+  ghost: "bg-[#705898]",
+  ice: "bg-[#BCE6E6]",
+  dragon: "bg-[#478A93]",
+  steel: "bg-[#5E736C]",
+  dark: "bg-[#030706]",
+  unknown: "bg-[#9DC1B7]",
+  shadow: "bg-[#2d2e2f]",
+};
+
 const PokemonId = () => {
   const [pokemon, setPokemon] = useState(null);
-  console.log(pokemon);
 
   const { pokemonName } = useParams();
 
   const progressStatPercent = (baseStat) => {
     const MAX_STAT = 255;
     return `${(baseStat * 100) / MAX_STAT}%`;
+  };
+
+  const formatPokemonTypes = (types = []) => {
+    const typesNames = types.map((type) => {
+      const capitalizedType =
+        type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1);
+      return capitalizedType;
+    });
+
+    const separatedWords = typesNames.map((word, index) => {
+      const lowercaseWord = word.toLowerCase();
+      return (
+        <span
+          key={index}
+          className={`border text-white px-8 m-2 inline-block text-sm ${bgColors[lowercaseWord]}`}
+        >
+          {word}
+        </span>
+      );
+    });
+
+    return separatedWords;
+  };
+
+  const formatPokemonAbilities = (abilities = []) => {
+    const abilitiesNames = abilities.map((ability) => {
+      const capitalizedAbility =
+        ability.ability.name.charAt(0).toUpperCase() +
+        ability.ability.name.slice(1);
+      return capitalizedAbility;
+    });
+
+    const separatedWords = abilitiesNames.map((word, index) => (
+      <span
+        key={index}
+        className="border border-gray-200 text-sm px-8 m-2 inline-block"
+      >
+        {word}
+      </span>
+    ));
+
+    return separatedWords;
   };
 
   useEffect(() => {
@@ -117,20 +181,24 @@ const PokemonId = () => {
           <section className="grid grid-cols-2 text-center pb-4 gap-6">
             <div className="grid justify-items-end">
               <p className="text-xs">Weight</p>
-              <p className="text-sm">{pokemon?.weight}</p>
+              <p className="text-sm font-semibold">{pokemon?.weight}</p>
             </div>
             <div className="grid justify-items-start">
               <p className="text-xs">Height</p>
-              <p className="text-sm">{pokemon?.height}</p>
+              <p className="text-sm font-semibold">{pokemon?.height}</p>
             </div>
           </section>
 
-          {/* Type & Habilities */}
-          <section>
+          {/* Type & Abilities */}
+          <section className="flex justify-evenly text-center mb-6">
             <div>
-              
+              <h3 className="font-bold pb-3">Type</h3>
+              <p>{formatPokemonTypes(pokemon?.types)}</p>
             </div>
-            <div></div>
+            <div>
+              <h3 className="font-bold pb-3">Abilities</h3>
+              <p>{formatPokemonAbilities(pokemon?.abilities)}</p>
+            </div>
           </section>
 
           {/* Stats */}
@@ -138,7 +206,11 @@ const PokemonId = () => {
             <div className="flex justify-between">
               <h3 className="font-semibold text-2xl pr-2">Stats</h3>
               <div className="bg-gray-300 w-full h-[1px] translate-y-4"></div>
-              <img className="h-16 -translate-y-5" src="/images/pokePointer.png" alt="" />
+              <img
+                className="h-16 -translate-y-5"
+                src="/images/pokePointer.png"
+                alt=""
+              />
             </div>
             <section>
               {pokemon?.stats.map((stat) => (
