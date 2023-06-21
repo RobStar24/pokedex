@@ -76,11 +76,12 @@ const PokemonCard = ({ pokemonUrl }) => {
 
   const formatPokemonTypes = (types = []) => {
     const typesNames = types.map((type) => {
-        const capitalizedType = type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1);
-        return capitalizedType;
-      });
-      const typesTitle = typesNames.join(" / ");
-      return typesTitle;
+      const capitalizedType =
+        type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1);
+      return capitalizedType;
+    });
+    const typesTitle = typesNames.join(" / ");
+    return typesTitle;
   };
 
   formatPokemonTypes(pokemon?.types);
@@ -95,7 +96,9 @@ const PokemonCard = ({ pokemonUrl }) => {
   return (
     <Link to={`/pokedex/${pokemon?.name}`}>
       <article
-        className={`w-[300px] ${pokeBorder[pokemon?.types[0].type.name]}`}
+        className={`w-[300px] ${
+          pokeBorder[pokemon?.types[0].type.name]
+        } shadow-md shadow-slate-500`}
       >
         {/* Superior Section */}
         <section
@@ -113,11 +116,15 @@ const PokemonCard = ({ pokemonUrl }) => {
 
         {/* Inferior Section */}
         <section className="text-center">
-          <h2 className={`mt-14 text-2xl font-bold ${pokeText[pokemon?.types[0].type.name]}`}>
-            {pokemon?.name.charAt(0).toUpperCase() + pokemon?.name.slice(1)}
+          <h2
+            className={`mt-14 text-2xl font-bold ${
+              pokeText[pokemon?.types[0].type.name]
+            }`}
+          >
+            {pokemon && pokemon.name ? `${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}` : ''}
           </h2>
           <h3>{formatPokemonTypes(pokemon?.types)}</h3>
-          <span>Type</span>
+          <span className="text-gray-400 text-sm">Type</span>
         </section>
 
         <div className="border border-gray-100 mt-4"></div>
@@ -126,8 +133,15 @@ const PokemonCard = ({ pokemonUrl }) => {
           {/* Generate stats list */}
           {pokemon?.stats.slice(0, 4).map((stat) => (
             <div className="p-3" key={stat.stat.url}>
-              <h4 className="text-gray-400">{stat.stat.name.charAt(0).toUpperCase() + stat.stat.name.slice(1)}</h4>
-              <span className={`${pokeText[pokemon?.types[0].type.name]} font-bold text-lg`}>
+              <h4 className="text-gray-400">
+                {stat.stat.name.charAt(0).toUpperCase() +
+                  stat.stat.name.slice(1)}
+              </h4>
+              <span
+                className={`${
+                  pokeText[pokemon?.types[0].type.name]
+                } font-bold text-lg`}
+              >
                 {stat.base_stat}
               </span>
             </div>

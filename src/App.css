@@ -1,0 +1,23 @@
+.line-effect {
+    display: inline-block;
+    position: relative;
+}
+
+.line-effect::after,.line-effect::before{
+    content: '';
+    position: absolute;
+    height: 2px;
+    background-color: #D3D3D3;
+    top: 1rem;
+    width: 150%;
+    margin: 0 10px;
+}
+
+.line-effect::before{
+    left: 100%;
+}
+
+.line-effect::after{
+    right: 100%;
+    
+}

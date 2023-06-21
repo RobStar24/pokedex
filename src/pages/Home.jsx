@@ -18,16 +18,16 @@ const Home = () => {
  
   return (
     <main className="grid grid-rows-[1fr_auto] min-h-screen">
-        <section>
+        <section className="flex flex-col items-center justify-center w-full">
             <div>
                 <img src="/images/logo.png" alt="" />
             </div>
-            <h3>Hello Trainer!</h3>
-            <p>In order to start, give me your name</p>
+            <h3 className="text-red-600 font-bold text-4xl pt-10">Hello Trainer!</h3>
+            <p className="font-semibold text-lg text-slate-700">In order to start, give me your name</p>
 
-            <form onSubmit={handleSubmit}>
-                <input required id="trainerName" type="text" />
-                <button>Start!</button>
+            <form className="pt-10" onSubmit={handleSubmit}>
+                <input className="shadow-md border border-gray-100 h-10" required id="trainerName" type="text" />
+                <button className="bg-red-500 w-[85px] text-white h-10">Start!</button>
             </form>
 
         </section>

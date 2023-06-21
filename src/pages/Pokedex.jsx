@@ -112,17 +112,17 @@ const Pokedex = () => {
     <main>
       <Header />
 
-      <section className="place-items-center mx-6">
+      <section className="mx-6">
         {/* Filter and greeting section */}
         <section>
-          <h3 className="mt-6 p-2">
+          <h3 className="py-6">
             <span className="text-red-600 font-semibold">
               Welcome {trainerName}
             </span>
             , here you can find your favorite Pokemon
           </h3>
 
-          <form className="flex gap-x-4 flex-wrap" onSubmit={handleSubmit}>
+          <form className="flex gap-x-4 flex-wrap justify-center" onSubmit={handleSubmit}>
             <div className="w-[60%]">
               <input
                 className="shadow-md p-2 w-full my-2"
