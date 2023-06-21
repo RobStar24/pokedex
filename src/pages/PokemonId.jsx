@@ -75,7 +75,7 @@ const PokemonId = () => {
 
       <section>
         {/* Detail info about the Pokemon */}
-        <article className="mx-auto w-[90%] h-[90%] my-16 pb-4 shadow-md">
+        <article className="mx-auto w-[90%] max-w-4xl h-[90%] my-16 pb-4 shadow-md">
           {/* Superior Section */}
           <section
             className={`relative h-24 ${
